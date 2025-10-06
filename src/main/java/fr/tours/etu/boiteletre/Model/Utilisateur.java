@@ -19,6 +19,7 @@ public class Utilisateur {
     private String password;
     @Column(nullable = false)
     private String username;
+
     public Utilisateur() {}
     public Utilisateur(String nom, String prenom, String email, String password, String username) {
         this.nom = nom;

@@ -7,8 +7,13 @@ public class Coordonnees {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int coordonneesId;
+
+    @Column(nullable = false)
     private String latitude;
+
+    @Column(nullable = false)
     private String longitude;
+
     public Coordonnees() {}
     public Coordonnees(String latitude, String longitude) {
 

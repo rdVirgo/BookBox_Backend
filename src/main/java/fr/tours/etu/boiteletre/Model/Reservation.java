@@ -6,15 +6,21 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="reservation")
 public class Reservation {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+
+    @Column(nullable = false)
     private int reservationId;
+
+    @Id
     @OneToOne
     @JoinColumn(name="boiteId")
     private Boite boite;
+
+    @Id
     @ManyToOne
     @JoinColumn(name="utilisateurId")
     private Utilisateur utilisateurId;
+
+
 
     public Reservation() {}
     public Reservation(Boite boite, Utilisateur utilisateurId) {
