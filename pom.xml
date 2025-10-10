@@ -67,6 +67,12 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
             <version>3.5.6</version>
         </dependency>
+        <!-- To generate the getters and setters automatically-->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
 	</dependencies>
 
 

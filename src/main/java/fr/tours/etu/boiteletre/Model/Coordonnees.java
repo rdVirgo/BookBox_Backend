@@ -1,8 +1,10 @@
 package fr.tours.etu.boiteletre.Model;
 import jakarta.persistence.*;
+import  lombok.Data;
 
 @Entity
 @Table(name="coordonnees")
+@Data
 public class Coordonnees {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -21,24 +23,4 @@ public class Coordonnees {
         this.longitude = longitude;
     }
 
-    public int getCoordonneesId() {
-        return coordonneesId;
-    }
-
-
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
-    public String getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
 }

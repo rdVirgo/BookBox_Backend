@@ -1,10 +1,12 @@
 package fr.tours.etu.boiteletre.Model;
 
 import jakarta.persistence.*;
+import  lombok.Data;
 
 
 @Entity
 @Table(name="reservation")
+@Data
 public class Reservation {
 
     @Column(nullable = false)
@@ -21,7 +23,6 @@ public class Reservation {
     private Utilisateur utilisateurId;
 
 
-
     public Reservation() {}
     public Reservation(Boite boite, Utilisateur utilisateurId) {
         this.reservationId = reservationId;
@@ -29,27 +30,4 @@ public class Reservation {
         this.utilisateurId = utilisateurId;
     }
 
-    public int getReservationId() {
-        return reservationId;
-    }
-
-    public void setReservationId(int reservationId) {
-        this.reservationId = reservationId;
-    }
-
-    public Boite getBoite() {
-        return boite;
-    }
-
-    public void setBoite(Boite boite) {
-        this.boite = boite;
-    }
-
-    public Utilisateur getUtilisateurId() {
-        return utilisateurId;
-    }
-
-    public void setUtilisateurId(Utilisateur utilisateurId) {
-        this.utilisateurId = utilisateurId;
-    }
 }
