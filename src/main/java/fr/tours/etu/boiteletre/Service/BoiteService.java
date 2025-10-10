@@ -17,10 +17,6 @@ public class BoiteService {
         this.boiteRepository = boiteRepository;
     }
 
-    public Boite addBoite(String name, int quantity, String description){
-        Boite boite = new Boite(name,quantity,description);
-        return boiteRepository.save(boite);
-    }
 
     public Boite addBoite(Boite boite){
         return boiteRepository.save(boite);

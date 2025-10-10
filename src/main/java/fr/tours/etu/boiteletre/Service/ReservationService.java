@@ -20,20 +20,20 @@ public class ReservationService {
     public Reservation getReservationById(ReservationId ReservationId) {
         return ReservationRepository.getById(ReservationId);
     }
+
     public List<Reservation> getAllReservations() {
         return ReservationRepository.findAll();
     }
+
     public Reservation createReservation(Reservation reservation) {
         return ReservationRepository.save(reservation);
     }
-    public Reservation createReservation(Boite boite, Utilisateur utilisateur) {
-        Reservation reservation = new Reservation(boite,utilisateur);
-        return ReservationRepository.save(reservation);
-    }
+
     public void deleteReservation(ReservationId ReservationId) {
         Reservation reservation = ReservationRepository.getById(ReservationId);
         ReservationRepository.delete(reservation);
     }
+
     public Reservation updateReservation(Reservation reservation , ReservationId ReservationId) {
         return ReservationRepository.findById(ReservationId).map(user ->{
             user.setUtilisateur(reservation.getUtilisateur());

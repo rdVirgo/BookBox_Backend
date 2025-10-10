@@ -19,11 +19,6 @@ public class CoordonneesService {
         this.coordonneesRepository = coordonneesRepository;
     }
 
-    public Coordonnees addCoordonnees(String latitude, String longitude){
-        Coordonnees coordonnees = new Coordonnees(latitude, longitude);
-        return coordonneesRepository.save(coordonnees);
-    }
-
     public Coordonnees addCoordonnees(Coordonnees coordonnees){
         return coordonneesRepository.save(coordonnees);
     }
