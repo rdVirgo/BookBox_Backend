@@ -10,7 +10,7 @@ import  lombok.Data;
 public class Reservation {
 
     @Column(nullable = false)
-    private int reservationId;
+    private int reservationNb;
 
     @Id
     @OneToOne
@@ -25,7 +25,6 @@ public class Reservation {
 
     public Reservation() {}
     public Reservation(Boite boite, Utilisateur utilisateurId) {
-        this.reservationId = reservationId;
         this.boite = boite;
         this.utilisateurId = utilisateurId;
     }

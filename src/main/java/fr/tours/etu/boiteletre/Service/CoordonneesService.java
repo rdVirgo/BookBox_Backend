@@ -36,6 +36,10 @@ public class CoordonneesService {
         return coordonneesRepository.findAll();
     }
 
+    public Coordonnees getCoordonnesById(int id){
+        return coordonneesRepository.findById(id).orElse(null);
+    }
+
     public Coordonnees updateCoordonnees(int id, String latitude, String longitude){
         Coordonnees boite = coordonneesRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("Boite not found !"));
 
