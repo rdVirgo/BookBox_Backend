@@ -11,26 +11,27 @@ import java.util.List;
 @RestController
 @RequestMapping ("api/Utilisateurs")
 public class UtilisateurController {
+
   private final UtilisateurService utilisateurService;
   public UtilisateurController(UtilisateurService utilisateurService) {
       this.utilisateurService = utilisateurService;
   }
-@GetMapping
+
+  @GetMapping
     public List<Utilisateur> getUtilisateurs() {
      return utilisateurService.getAll();
 }
 
-@PostMapping
-public Utilisateur createUtilisateur(@RequestBody Utilisateur utilisateur) {
+    @PostMapping
+    public Utilisateur createUtilisateur(@RequestBody Utilisateur utilisateur) {
       return utilisateurService.createUtilisateur(utilisateur);
-}
-@PostMapping
-    public Utilisateur createUtilisateur(String nom , String prenom, String adresse, String email, String password,String UserName) {
-      return utilisateurService.createUtilisateur(nom, prenom, adresse, email, password, UserName);
-}
-@GetMapping("/{id}")
+    }
+
+
+    @GetMapping("/{id}")
     public Utilisateur getUserById(@PathVariable int id) {
-        return utilisateurService.getById(id);}
+        return utilisateurService.getById(id);
+    }
 
     @PutMapping
     public Utilisateur updateUtilisateur(@PathVariable int id, @RequestBody Utilisateur user) {

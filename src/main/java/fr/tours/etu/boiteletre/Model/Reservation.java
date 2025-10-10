@@ -1,32 +1,46 @@
 package fr.tours.etu.boiteletre.Model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import  lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name="reservation")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@IdClass(ReservationId.class)
 public class Reservation {
 
     @Column(nullable = false)
     private int reservationNb;
 
     @Id
-    @OneToOne
-    @JoinColumn(name="boiteId")
-    private Boite boite;
+    private int boiteId;
 
     @Id
+    private int utilisateurId;
+
+
+
+
+    @OneToOne
+    @JoinColumn(name="boiteId", insertable = false, updatable = false)
+    private Boite boite;
+
+
+
     @ManyToOne
-    @JoinColumn(name="utilisateurId")
-    private Utilisateur utilisateurId;
+    @JoinColumn(name="utilisateurId", insertable = false, updatable = false)
+    private Utilisateur utilisateur;
 
 
-    public Reservation() {}
-    public Reservation(Boite boite, Utilisateur utilisateurId) {
-        this.boite = boite;
-        this.utilisateurId = utilisateurId;
+
+    public Reservation(Boite boiteId, Utilisateur utilisateurId) {
+        this.boite = boiteId;
+        this.utilisateur = utilisateurId;
     }
 
 }

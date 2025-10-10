@@ -16,13 +16,9 @@ public class CoordonneesController {
         this.coordonneesService = coordonneesService;
     }
 
-    @PostMapping
-    public Coordonnees addCoordonnes(@RequestParam String latitude, @RequestParam String longitude){
-        return coordonneesService.addCoordonnees(latitude, longitude);
-    }
 
     @PostMapping
-    public Coordonnees addCoordonnes(@RequestParam Coordonnees coordonnees){
+    public Coordonnees addCoordonnes(@RequestBody Coordonnees coordonnees){
         return coordonneesService.addCoordonnees(coordonnees);
     }
 
@@ -37,7 +33,7 @@ public class CoordonneesController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCoordonneesById(@RequestParam int id){
+    public void deleteCoordonneesById(@PathVariable int id){
         coordonneesService.deleteCoordonneesById(id);
     }
 

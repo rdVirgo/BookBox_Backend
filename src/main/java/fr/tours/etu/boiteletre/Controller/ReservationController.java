@@ -3,6 +3,7 @@ package fr.tours.etu.boiteletre.Controller;
 
 import fr.tours.etu.boiteletre.Model.Boite;
 import fr.tours.etu.boiteletre.Model.Reservation;
+import fr.tours.etu.boiteletre.Model.ReservationId;
 import fr.tours.etu.boiteletre.Model.Utilisateur;
 import fr.tours.etu.boiteletre.Service.ReservationService;
 import org.springframework.web.bind.annotation.*;
@@ -10,10 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/Reservations")
-
+@RequestMapping("api/reservation")
 public class ReservationController {
     private final ReservationService reservationService;
+
+
     public ReservationController(ReservationService reservationService) {
         this.reservationService = reservationService;
     }
@@ -26,21 +28,18 @@ public class ReservationController {
     public Reservation createReservation(@RequestBody Reservation reservation) {
         return reservationService.createReservation(reservation);
     }
-    @PostMapping
-    public Reservation createReservation(Boite boite, Utilisateur utilisateur) {
-        return reservationService.createReservation(boite, utilisateur);
-    }
+
     @GetMapping("/{id}")
-    public Reservation getReservationById(@PathVariable int id) {
+    public Reservation getReservationById(@PathVariable ReservationId id) {
         return  reservationService.getReservationById(id);}
 
     @PutMapping
-    public Reservation updateReservation(@PathVariable int id, @RequestBody Reservation reservation) {
+    public Reservation updateReservation(@PathVariable ReservationId id, @RequestBody Reservation reservation) {
         return reservationService.updateReservation(reservation, id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteReservation(@PathVariable int id) {
+    public void deleteReservation(@PathVariable ReservationId id) {
        reservationService.deleteReservation(id);
     }
 }

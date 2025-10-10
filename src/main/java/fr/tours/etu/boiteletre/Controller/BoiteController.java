@@ -16,13 +16,9 @@ public class BoiteController {
         this.boiteService = boiteService;
     }
 
-    @PostMapping
-    public Boite addBoite(@RequestParam String name, @RequestParam int quantity, @RequestParam String description){
-        return boiteService.addBoite(name, quantity, description);
-    }
 
     @PostMapping
-    public Boite addBoite(@RequestParam Boite boite){
+    public Boite addBoite(@RequestBody Boite boite){
         return boiteService.addBoite(boite);
     }
 

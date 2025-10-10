@@ -2,6 +2,7 @@ package fr.tours.etu.boiteletre.Service;
 
 import fr.tours.etu.boiteletre.Model.Boite;
 import fr.tours.etu.boiteletre.Model.Reservation;
+import fr.tours.etu.boiteletre.Model.ReservationId;
 import fr.tours.etu.boiteletre.Model.Utilisateur;
 import fr.tours.etu.boiteletre.Repository.ReservationRepository;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,8 @@ public class ReservationService {
         ReservationRepository = reservationRepository;
     }
 
-    public Reservation getReservationById(int id) {
-        return ReservationRepository.getById(id);
+    public Reservation getReservationById(ReservationId ReservationId) {
+        return ReservationRepository.getById(ReservationId);
     }
     public List<Reservation> getAllReservations() {
         return ReservationRepository.findAll();
@@ -29,13 +30,13 @@ public class ReservationService {
         Reservation reservation = new Reservation(boite,utilisateur);
         return ReservationRepository.save(reservation);
     }
-    public void deleteReservation(int id) {
-        Reservation reservation = ReservationRepository.getById(id);
+    public void deleteReservation(ReservationId ReservationId) {
+        Reservation reservation = ReservationRepository.getById(ReservationId);
         ReservationRepository.delete(reservation);
     }
-    public Reservation updateReservation(Reservation reservation , int id) {
-        return ReservationRepository.findById(id).map(user ->{
-            user.setUtilisateurId(reservation.getUtilisateurId());
+    public Reservation updateReservation(Reservation reservation , ReservationId ReservationId) {
+        return ReservationRepository.findById(ReservationId).map(user ->{
+            user.setUtilisateur(reservation.getUtilisateur());
             user.setBoite(reservation.getBoite());
             return ReservationRepository.save(user);
         }).orElseThrow(() -> new RuntimeException("User not found"));
