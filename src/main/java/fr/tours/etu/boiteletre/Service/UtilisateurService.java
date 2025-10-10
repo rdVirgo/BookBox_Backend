@@ -38,6 +38,10 @@ public Utilisateur createUtilisateur(String nom , String prenom, String adresse,
 public void deleteUtilisateur(Utilisateur utilisateur) {
      repo.delete(utilisateur);
 }
+public void deleteUtilisateurById(int id) {
+        Utilisateur utilisateur = repo.findById(id).orElse(null);
+        repo.delete(utilisateur);
+}
 public Utilisateur UpdateUtilisateur(Utilisateur utilisateur , int id) {
     return repo.findById(id).map(user ->{
         user.setNom(utilisateur.getNom());
