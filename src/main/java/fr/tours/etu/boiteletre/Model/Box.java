@@ -11,7 +11,7 @@ import lombok.*;
 public class Box {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int boiteId;
+    private int boxId;
 
     @Column(nullable = false)
     private String name;
