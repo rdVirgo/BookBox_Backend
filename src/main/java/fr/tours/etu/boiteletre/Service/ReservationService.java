@@ -1,9 +1,7 @@
 package fr.tours.etu.boiteletre.Service;
 
-import fr.tours.etu.boiteletre.Model.Boite;
 import fr.tours.etu.boiteletre.Model.Reservation;
 import fr.tours.etu.boiteletre.Model.ReservationId;
-import fr.tours.etu.boiteletre.Model.Utilisateur;
 import fr.tours.etu.boiteletre.Repository.ReservationRepository;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +23,8 @@ public class ReservationService {
         return ReservationRepository.findAll();
     }
 
-    public Reservation createReservation(int boiteId, int utilisateurId, int reservationNb) {
-        ReservationId reservationId = new ReservationId(boiteId, utilisateurId);
+    public Reservation createReservation(int boxId, int userId, int reservationNb) {
+        ReservationId reservationId = new ReservationId(boxId, userId);
         Reservation reservation = new Reservation(reservationId, reservationNb);
         return ReservationRepository.save(reservation);
     }

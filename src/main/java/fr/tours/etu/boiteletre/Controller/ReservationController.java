@@ -1,10 +1,8 @@
 package fr.tours.etu.boiteletre.Controller;
 
 
-import fr.tours.etu.boiteletre.Model.Boite;
 import fr.tours.etu.boiteletre.Model.Reservation;
 import fr.tours.etu.boiteletre.Model.ReservationId;
-import fr.tours.etu.boiteletre.Model.Utilisateur;
 import fr.tours.etu.boiteletre.Service.ReservationService;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,8 +25,8 @@ public class ReservationController {
     }
 
     @PostMapping
-    public Reservation createReservation(@RequestParam int boiteId, @RequestParam int utilisateurId, @RequestParam int reservationNb) {
-        return reservationService.createReservation(boiteId, utilisateurId, reservationNb);
+    public Reservation createReservation(@RequestParam int box, @RequestParam int userId, @RequestParam int reservationNb) {
+        return reservationService.createReservation(box, userId, reservationNb);
     }
 
     @GetMapping("/{id}")

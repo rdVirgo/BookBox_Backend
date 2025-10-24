@@ -8,14 +8,14 @@ import java.util.Objects;
 @Embeddable
 public class ReservationId implements Serializable {
 
-    private int boiteId;
-    private int utilisateurId;
+    private int boxId;
+    private int userId;
 
     public ReservationId(){}
 
-    public ReservationId(int boiteId,int utilisateurId){
-        this.boiteId = boiteId;
-        this.utilisateurId = utilisateurId;
+    public ReservationId(int boxId, int userId){
+        this.boxId = boxId;
+        this.userId = userId;
     }
 
     @Override
@@ -27,12 +27,12 @@ public class ReservationId implements Serializable {
 
         ReservationId id = (ReservationId) object;
 
-        return Objects.equals(boiteId,id.boiteId) && Objects.equals(utilisateurId,id.utilisateurId);
+        return Objects.equals(boxId,id.boxId) && Objects.equals(userId,id.userId);
     }
 
     @Override
     public int hashCode(){
-        return Objects.hash(boiteId, utilisateurId);
+        return Objects.hash(boxId, userId);
     }
 
 }

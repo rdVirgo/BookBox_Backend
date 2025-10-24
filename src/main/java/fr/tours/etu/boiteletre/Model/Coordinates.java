@@ -5,14 +5,14 @@ import  lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="coordonnees")
+@Table(name="coordinates")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Coordonnees {
+public class Coordinates {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int coordonneesId;
+    private int coordinatesId;
 
     @Column(nullable = false)
     private String latitude;
@@ -21,7 +21,7 @@ public class Coordonnees {
     private String longitude;
 
 
-    public Coordonnees(String latitude, String longitude) {
+    public Coordinates(String latitude, String longitude) {
 
         this.latitude = latitude;
         this.longitude = longitude;

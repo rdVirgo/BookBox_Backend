@@ -2,35 +2,34 @@ package fr.tours.etu.boiteletre.Model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 @Entity
-@Table(name="boite")
+@Table(name="box")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Boite {
+public class Box {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int boiteId;
 
     @Column(nullable = false)
-    private String nom;
+    private String name;
 
     @Column(nullable = false)
-    private int quantite;
+    private int quantity;
 
     @Column
     private String description;
     
     @OneToOne
-    @JoinColumn(name="coordonneesId")
-    private Coordonnees coordonnees;
+    @JoinColumn(name="coordinatesId")
+    private Coordinates coordinates;
 
 
-    public Boite( String nom, int quantite, String description, int coordonnees_id) {
-        this.nom = nom;
-        this.quantite = quantite;
+    public Box(String name, int quantity, String description, int coordinates_id) {
+        this.name = name;
+        this.quantity = quantity;
         this.description = description;
 
     }

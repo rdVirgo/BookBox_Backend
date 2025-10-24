@@ -3,20 +3,19 @@ package fr.tours.etu.boiteletre.Model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import  lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="utilisateur")
+@Table(name="users")
 @Data
 @AllArgsConstructor
-public class Utilisateur {
+public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int utilisateurId;
+    private int userId;
     @Column(nullable = false)
-    private String nom;
+    private String name;
     @Column(nullable = false)
-    private String prenom;
+    private String surname;
     @Column(nullable = false)
     private String email;
     @Column(nullable = false)
@@ -24,10 +23,10 @@ public class Utilisateur {
     @Column(nullable = false)
     private String username;
 
-    public Utilisateur() {}
-    public Utilisateur(String nom, String prenom, String email, String password, String username) {
-        this.nom = nom;
-        this.prenom = prenom;
+    public User() {}
+    public User(String name, String surname, String email, String password, String username) {
+        this.name = name;
+        this.surname = surname;
         this.email = email;
         this.password = password;
         this.username = username;
