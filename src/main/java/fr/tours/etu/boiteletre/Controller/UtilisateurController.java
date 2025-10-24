@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping ("api/Utilisateurs")
+@RequestMapping ("api/utilisateurs")
 public class UtilisateurController {
 
-  private final UtilisateurService utilisateurService;
-  public UtilisateurController(UtilisateurService utilisateurService) {
+    private final UtilisateurService utilisateurService;
+    public UtilisateurController(UtilisateurService utilisateurService) {
       this.utilisateurService = utilisateurService;
-  }
+    }
 
-  @GetMapping
+    @GetMapping
     public List<Utilisateur> getUtilisateurs() {
      return utilisateurService.getAll();
 }

@@ -1,8 +1,11 @@
 package fr.tours.etu.boiteletre.Model;
 
+import jakarta.persistence.Embeddable;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Embeddable
 public class ReservationId implements Serializable {
 
     private int boiteId;

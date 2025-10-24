@@ -25,7 +25,9 @@ public class ReservationService {
         return ReservationRepository.findAll();
     }
 
-    public Reservation createReservation(Reservation reservation) {
+    public Reservation createReservation(int boiteId, int utilisateurId, int reservationNb) {
+        ReservationId reservationId = new ReservationId(boiteId, utilisateurId);
+        Reservation reservation = new Reservation(reservationId, reservationNb);
         return ReservationRepository.save(reservation);
     }
 
@@ -34,13 +36,7 @@ public class ReservationService {
         ReservationRepository.delete(reservation);
     }
 
-    public Reservation updateReservation(Reservation reservation , ReservationId ReservationId) {
-        return ReservationRepository.findById(ReservationId).map(user ->{
-            user.setUtilisateur(reservation.getUtilisateur());
-            user.setBoite(reservation.getBoite());
-            return ReservationRepository.save(user);
-        }).orElseThrow(() -> new RuntimeException("User not found"));
-    }
+
 
 
 }

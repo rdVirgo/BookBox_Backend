@@ -1,11 +1,9 @@
 package fr.tours.etu.boiteletre.Model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
-import  lombok.Data;
 @Entity
 @Table(name="boite")
 @Data
@@ -27,14 +25,14 @@ public class Boite {
     
     @OneToOne
     @JoinColumn(name="coordonneesId")
-    private Coordonnees coordonneesid;
+    private Coordonnees coordonnees;
 
 
-    public Boite( String nom, int quantite, String description) {
-
+    public Boite( String nom, int quantite, String description, int coordonnees_id) {
         this.nom = nom;
         this.quantite = quantite;
         this.description = description;
+
     }
 
 

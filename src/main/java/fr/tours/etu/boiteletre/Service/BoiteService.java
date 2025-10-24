@@ -22,6 +22,7 @@ public class BoiteService {
         return boiteRepository.save(boite);
     }
 
+
     public void deleteBoiteById(int id){
         boiteRepository.deleteById(id);
     }
