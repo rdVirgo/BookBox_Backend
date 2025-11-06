@@ -22,7 +22,7 @@ public class Box {
     @Column
     private String description;
     
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="coordinatesId")
     private Coordinates coordinates;
 
