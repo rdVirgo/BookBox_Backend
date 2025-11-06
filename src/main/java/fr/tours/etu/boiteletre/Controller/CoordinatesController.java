@@ -1,40 +1,58 @@
 package fr.tours.etu.boiteletre.Controller;
 
+import fr.tours.etu.boiteletre.DTO.DtoForCoordinates.CoordinatesDTO;
 import fr.tours.etu.boiteletre.Model.Coordinates;
 import fr.tours.etu.boiteletre.Service.CoordinatesService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/coordinates")
+@RequiredArgsConstructor
 public class CoordinatesController {
 
     private final CoordinatesService coordinatesService;
 
-    public CoordinatesController(CoordinatesService coordinatesService){
-        this.coordinatesService = coordinatesService;
-    }
-
-
     @PostMapping
-    public Coordinates createCoordinates(@RequestBody Coordinates coordinates){
-        return coordinatesService.createCoordinates(coordinates);
+    public CoordinatesDTO createCoordinates(@RequestBody CoordinatesDTO coordinatesDTO){
+        return coordinatesService.createCoordinates(coordinatesDTO);
     }
 
     @GetMapping
-    public List<Coordinates> getAllCoordinates(){
+    public List<CoordinatesDTO> getAllCoordinates(){
         return coordinatesService.getAllCoordinates();
     }
 
-    @PutMapping
-    public Coordinates updateCoordinates(@PathVariable int id, @RequestParam String latitude, @RequestParam String longitude){
-        return coordinatesService.updateCoordinates(id, latitude, longitude);
+    @GetMapping("/{id}")
+    public CoordinatesDTO getCoordinatesById(@PathVariable int id){
+        try{
+            return coordinatesService.getCoordinatesById(id);
+        }catch (IllegalArgumentException ex){
+            System.err.println("Error : " + ex.getMessage());
+        }
+        return null;
+    }
+
+    @PutMapping("/{id}")
+    public CoordinatesDTO updateCoordinates(@PathVariable int id, @RequestBody CoordinatesDTO coordinatesDTO){
+        try{
+            return coordinatesService.updateCoordinates(id, coordinatesDTO);
+        }catch (IllegalArgumentException ex){
+            System.err.println("Error : " + ex.getMessage());
+        }
+        return null;
     }
 
     @DeleteMapping("/{id}")
     public void deleteCoordinateById(@PathVariable int id){
-        coordinatesService.deleteCoordinatesById(id);
+        try{
+            coordinatesService.deleteCoordinatesById(id);
+        }catch (IllegalAccessException ex){
+            System.err.println("Error : " + ex.getMessage());
+        }
+
     }
 
 }

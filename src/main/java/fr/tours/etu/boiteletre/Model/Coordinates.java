@@ -20,11 +20,4 @@ public class Coordinates {
     @Column(nullable = false)
     private String longitude;
 
-
-    public Coordinates(String latitude, String longitude) {
-
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
-
 }

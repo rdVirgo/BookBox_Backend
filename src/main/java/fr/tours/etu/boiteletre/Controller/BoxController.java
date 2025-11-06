@@ -38,7 +38,12 @@ public class BoxController {
 
     @DeleteMapping("/{id}")
     public void deleteBoxById(@PathVariable int id){
-        boxService.deleteBoxById(id);
+        try{
+            boxService.deleteBoxById(id);
+        }catch (IllegalArgumentException ex){
+            System.err.println("Error : " + ex.getMessage());
+        }
+
     }
 
 }
