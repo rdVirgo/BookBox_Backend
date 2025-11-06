@@ -27,12 +27,4 @@ public class Box {
     private Coordinates coordinates;
 
 
-    public Box(String name, int quantity, String description, int coordinates_id) {
-        this.name = name;
-        this.quantity = quantity;
-        this.description = description;
-
-    }
-
-
 }

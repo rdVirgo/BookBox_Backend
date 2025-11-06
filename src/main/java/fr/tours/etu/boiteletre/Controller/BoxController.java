@@ -1,40 +1,39 @@
 package fr.tours.etu.boiteletre.Controller;
 
+import fr.tours.etu.boiteletre.DTO.DtoForBox.BoxDTO;
+import fr.tours.etu.boiteletre.DTO.DtoForBox.ResponseBoxDTO;
 import fr.tours.etu.boiteletre.Model.Box;
 import fr.tours.etu.boiteletre.Service.BoxService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/box")
 public class BoxController {
 
     private final BoxService boxService;
 
-    public BoxController(BoxService boxService){
-        this.boxService = boxService;
-    }
-
-
     @PostMapping
-    public Box createBox(@RequestBody Box box){
-        return boxService.createBox(box);
+    public ResponseBoxDTO createBox(@RequestBody BoxDTO boxDTO){
+        return boxService.createBox(boxDTO);
     }
 
     @GetMapping
-    public List<Box> getAllBox(){
+    public List<ResponseBoxDTO> getAllBox(){
         return boxService.getAllBox();
     }
 
     @GetMapping("/{id}")
-    public Box getAllBox(@PathVariable int id){
+    public ResponseBoxDTO getBoxById(@PathVariable int id){
         return boxService.getBoxById(id);
     }
 
-    @PutMapping
-    public Box updateBox(@PathVariable int id, @RequestParam String name, @RequestParam int quantity, @RequestParam String description){
-        return boxService.updateBox(id, name, quantity, description);
+    @PutMapping("/{id}")
+    public ResponseBoxDTO updateBox(@PathVariable int id, @RequestBody BoxDTO boxDTO){
+        return boxService.updateBox(id, boxDTO);
     }
 
     @DeleteMapping("/{id}")
