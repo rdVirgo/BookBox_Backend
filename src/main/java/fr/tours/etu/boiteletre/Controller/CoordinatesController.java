@@ -27,32 +27,18 @@ public class CoordinatesController {
 
     @GetMapping("/{id}")
     public CoordinatesDTO getCoordinatesById(@PathVariable int id){
-        try{
             return coordinatesService.getCoordinatesById(id);
-        }catch (IllegalArgumentException ex){
-            System.err.println("Error : " + ex.getMessage());
-        }
-        return null;
     }
 
     @PutMapping("/{id}")
     public CoordinatesDTO updateCoordinates(@PathVariable int id, @RequestBody CoordinatesDTO coordinatesDTO){
-        try{
+
             return coordinatesService.updateCoordinates(id, coordinatesDTO);
-        }catch (IllegalArgumentException ex){
-            System.err.println("Error : " + ex.getMessage());
-        }
-        return null;
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCoordinateById(@PathVariable int id){
-        try{
+    public void deleteCoordinateById(@PathVariable int id) {
             coordinatesService.deleteCoordinatesById(id);
-        }catch (IllegalAccessException ex){
-            System.err.println("Error : " + ex.getMessage());
-        }
-
     }
 
 }

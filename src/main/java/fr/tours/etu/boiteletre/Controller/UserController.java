@@ -28,31 +28,17 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseUserDTO getUserById(@PathVariable int id) {
-        try{
+
             return userService.getUserById(id);
-        }catch (IllegalArgumentException ex){
-            System.err.println("Error : " + ex.getMessage());
-        }
-        return null;
     }
 
     @PutMapping("/{id}")
     public ResponseUserDTO updateUser(@PathVariable int id, @RequestBody UserDTO userDTO) {
-        try{
-            return userService.UpdateUser(id, userDTO);
-        }catch (RuntimeException ex){
-            System.err.println("Error : " + ex.getMessage());
-        }
-        return null;
+        return userService.UpdateUser(id, userDTO);
     }
 
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable int id) {
-        try{
             userService.deleteUser(id);
-        }catch (IllegalArgumentException ex){
-            System.err.println("Error : " + ex.getMessage());
-        }
     }
-
 }

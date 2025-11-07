@@ -1,12 +1,14 @@
 package fr.tours.etu.boiteletre.Service;
 
 
+import fr.tours.etu.boiteletre.Configuration.ApiException;
 import fr.tours.etu.boiteletre.DTO.DtoForUser.ResponseUserDTO;
 import fr.tours.etu.boiteletre.DTO.DtoForUser.UserDTO;
 import fr.tours.etu.boiteletre.MappStruct.UserMapper;
 import fr.tours.etu.boiteletre.Model.User;
 import fr.tours.etu.boiteletre.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -61,11 +63,11 @@ public class UserService {
 
             return new ResponseUserDTO(userMapper.userToDto(saveUser));
 
-        }).orElseThrow(() -> new RuntimeException("User with the id : " + id + " not found. So cannot be updated!"));
+        }).orElseThrow(() -> new ApiException("User with the id : " + id + " not found. So cannot be updated!", HttpStatus.NOT_FOUND));
     }
 
     public void deleteUser(int id) {
-        User user = userRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("User with the id : " + id + " not found. So cannot be updated!"));
+        User user = userRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("User with the id : " + id + " not found. So cannot be deleted!"));
         userRepository.delete(user);
     }
 

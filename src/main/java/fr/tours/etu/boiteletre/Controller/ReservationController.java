@@ -30,31 +30,16 @@ public class ReservationController {
 
     @GetMapping("/id")
     public ReservationDTO getReservationById(@RequestBody ReservationId id) {
-
-        try{
             return reservationService.getReservationById(id);
-        }catch (IllegalArgumentException ex){
-            System.err.println("Error : " + ex.getMessage() + " : " + ex.getCause());
-        }
-        return null;
     }
 
     @PutMapping("/id")
     public ReservationDTO updateReservation(@RequestBody ReservationIdAndDTO reservationIdAndDTO) {
-        try{
             return reservationService.updateReservation(reservationIdAndDTO);
-        }catch (IllegalArgumentException ex){
-            System.err.println("Error : " + ex.getMessage());
-        }
-        return null;
     }
 
     @DeleteMapping("/id")
     public void deleteReservation(@RequestBody ReservationId id) {
-        try{
             reservationService.deleteReservation(id);
-        }catch (IllegalArgumentException ex){
-            System.err.println("Error : " + ex.getMessage());
-        }
     }
 }

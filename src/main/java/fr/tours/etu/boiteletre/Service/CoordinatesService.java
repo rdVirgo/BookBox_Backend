@@ -60,11 +60,11 @@ public class CoordinatesService {
         return coordinatesMapper.coordinatesToDto(saveCoordinates);
     }
 
-    public void deleteCoordinatesById(int id) throws IllegalAccessException {
+    public void deleteCoordinatesById(int id) {
         if (coordinatesRepository.existsById(id)){
             coordinatesRepository.deleteById(id);
         }else{
-            throw new IllegalAccessException("Coordinates cannot be deleted." + " id : " + id + " not found!");
+            throw new IllegalArgumentException("Coordinates cannot be deleted." + " id : " + id + " not found!");
         }
 
     }
