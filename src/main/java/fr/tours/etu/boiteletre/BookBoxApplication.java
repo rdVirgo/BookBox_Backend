@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BoiteletreApplication {
+public class BookBoxApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BoiteletreApplication.class, args);
+		SpringApplication.run(BookBoxApplication.class, args);
 	}
 
 }
