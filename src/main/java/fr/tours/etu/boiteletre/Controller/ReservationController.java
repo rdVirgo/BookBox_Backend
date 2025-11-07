@@ -1,45 +1,60 @@
 package fr.tours.etu.boiteletre.Controller;
 
 
+import fr.tours.etu.boiteletre.DTO.DtoForReservation.ReservationDTO;
+import fr.tours.etu.boiteletre.DTO.DtoForReservation.ReservationIdAndDTO;
 import fr.tours.etu.boiteletre.Model.Reservation;
 import fr.tours.etu.boiteletre.Model.ReservationId;
 import fr.tours.etu.boiteletre.Service.ReservationService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("api/reservation")
+@RequiredArgsConstructor
 public class ReservationController {
 
     private final ReservationService reservationService;
 
-
-    public ReservationController(ReservationService reservationService) {
-        this.reservationService = reservationService;
+    @PostMapping
+    public ReservationDTO createReservation(@RequestBody ReservationDTO reservationDTO) {
+        return reservationService.createReservation(reservationDTO);
     }
 
     @GetMapping
-    public List<Reservation> getReservations() {
+    public List<ReservationDTO> getAllReservation() {
         return reservationService.getAllReservations();
     }
 
-    @PostMapping
-    public Reservation createReservation(@RequestParam int box, @RequestParam int userId, @RequestParam int reservationNb) {
-        return reservationService.createReservation(box, userId, reservationNb);
+    @GetMapping("/id")
+    public ReservationDTO getReservationById(@RequestBody ReservationId id) {
+
+        try{
+            return reservationService.getReservationById(id);
+        }catch (IllegalArgumentException ex){
+            System.err.println("Error : " + ex.getMessage() + " : " + ex.getCause());
+        }
+        return null;
     }
 
-    @GetMapping("/{id}")
-    public Reservation getReservationById(@PathVariable ReservationId id) {
-        return  reservationService.getReservationById(id);}
+    @PutMapping("/id")
+    public ReservationDTO updateReservation(@RequestBody ReservationIdAndDTO reservationIdAndDTO) {
+        try{
+            return reservationService.updateReservation(reservationIdAndDTO);
+        }catch (IllegalArgumentException ex){
+            System.err.println("Error : " + ex.getMessage());
+        }
+        return null;
+    }
 
-    /*@PutMapping
-    public Reservation updateReservation(@PathVariable ReservationId id, @RequestBody Reservation reservation) {
-        return reservationService.updateReservation(reservation, id);
-    }*/
-
-    @DeleteMapping("/{id}")
-    public void deleteReservation(@PathVariable ReservationId id) {
-       reservationService.deleteReservation(id);
+    @DeleteMapping("/id")
+    public void deleteReservation(@RequestBody ReservationId id) {
+        try{
+            reservationService.deleteReservation(id);
+        }catch (IllegalArgumentException ex){
+            System.err.println("Error : " + ex.getMessage());
+        }
     }
 }

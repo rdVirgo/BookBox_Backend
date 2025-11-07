@@ -3,10 +3,12 @@ package fr.tours.etu.boiteletre.Model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import  lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="users")
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class User {
     @Id
@@ -22,14 +24,4 @@ public class User {
     private String password;
     @Column(nullable = false)
     private String username;
-
-    public User() {}
-    public User(String name, String surname, String email, String password, String username) {
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.password = password;
-        this.username = username;
-    }
-
 }

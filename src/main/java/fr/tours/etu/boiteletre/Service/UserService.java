@@ -1,51 +1,72 @@
 package fr.tours.etu.boiteletre.Service;
 
 
+import fr.tours.etu.boiteletre.DTO.DtoForUser.ResponseUserDTO;
+import fr.tours.etu.boiteletre.DTO.DtoForUser.UserDTO;
+import fr.tours.etu.boiteletre.MappStruct.UserMapper;
 import fr.tours.etu.boiteletre.Model.User;
 import fr.tours.etu.boiteletre.Repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
+
    private final UserRepository userRepository;
+   private final UserMapper userMapper;
 
+    public ResponseUserDTO createUser(UserDTO userDTO) {
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+        User user = userMapper.dtoToUser(userDTO);
+
+        User saveUser = userRepository.save(user);
+
+        return new ResponseUserDTO(userMapper.userToDto(saveUser));
     }
 
-    public User getById(int id) {
-        return userRepository.findById(id).orElse(null);
-    }
-    public List<User> getAll() {
-        return userRepository.findAll();
+    public List<ResponseUserDTO> getAllUser() {
+
+        List<User> userList = userRepository.findAll();
+        List<ResponseUserDTO> responseUserDTOList = new ArrayList<>();
+
+        if (!userList.isEmpty()){
+            for (User u : userList){
+                responseUserDTOList.add(new ResponseUserDTO(userMapper.userToDto(u)));
+            }
+        }
+
+        return responseUserDTOList;
     }
 
-    public User createUser(User user) {
-        return userRepository.save(user);
+    public ResponseUserDTO getUserById(int id) {
+
+        User user = userRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("User with the id : " + id + " doesn't exist!"));
+
+        return new ResponseUserDTO(userMapper.userToDto(user));
     }
 
+    public ResponseUserDTO UpdateUser(int id, UserDTO userDTO) {
+        return userRepository.findById(id).map(user ->{
+            user.setName(userDTO.getName());
+            user.setSurname(userDTO.getSurname());
+            user.setEmail(userDTO.getEmail());
+            user.setPassword(userDTO.getPassword());
+            user.setUsername(userDTO.getUsername());
 
-    public void deleteUser(User user) {
+            User saveUser = userRepository.save(user);
+
+            return new ResponseUserDTO(userMapper.userToDto(saveUser));
+
+        }).orElseThrow(() -> new RuntimeException("User with the id : " + id + " not found. So cannot be updated!"));
+    }
+
+    public void deleteUser(int id) {
+        User user = userRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("User with the id : " + id + " not found. So cannot be updated!"));
         userRepository.delete(user);
-    }
-
-    public void deleteUserById(int id) {
-        User user = userRepository.findById(id).orElse(null);
-        userRepository.delete(user);
-    }
-
-    public User UpdateUser(User user , int id) {
-        return userRepository.findById(id).map(users ->{
-            user.setName(user.getName());
-            user.setSurname(user.getSurname());
-            user.setEmail(user.getEmail());
-            user.setPassword(user.getPassword());
-            user.setUsername(user.getUsername());
-            return userRepository.save(user);
-        }).orElseThrow(() -> new RuntimeException("User not found"));
     }
 
 }

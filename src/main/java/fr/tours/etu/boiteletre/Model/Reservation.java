@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Table(name="reservation")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Reservation {
 
     @EmbeddedId
@@ -17,10 +18,5 @@ public class Reservation {
 
     @Column(nullable = false)
     private int reservationNb;
-
-    public Reservation(ReservationId reservationId, int reservationNb){
-        this.reservationId = reservationId;
-        this.reservationNb = reservationNb;
-    }
 
 }

@@ -2,12 +2,10 @@ package fr.tours.etu.boiteletre.Service;
 
 import fr.tours.etu.boiteletre.DTO.DtoForBox.BoxDTO;
 import fr.tours.etu.boiteletre.DTO.DtoForBox.ResponseBoxDTO;
-import fr.tours.etu.boiteletre.DTO.ReservationDTO;
 import fr.tours.etu.boiteletre.MappStruct.BoxMapper;
 import fr.tours.etu.boiteletre.Model.Box;
 import fr.tours.etu.boiteletre.Repository.BoxRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
