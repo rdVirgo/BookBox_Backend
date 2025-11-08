@@ -9,33 +9,68 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ *  A controller class for the Box entity.
+ * It contains  the crud operations for the user side.
+ *
+ * @author Coulibaly Mamadou & Radia MERABTENE
+ * @version 1.0
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/box")
 public class BoxController {
-
+    /**
+     * the boxService object.
+     */
     private final BoxService boxService;
 
+    /**
+     * Creates a new box.
+     *
+     * @param boxDTO a DTO object containing information about the box to be created.
+     * @return A ResponseBoxDTO containing details of the created box.
+     */
     @PostMapping
     public ResponseBoxDTO createBox(@RequestBody BoxDTO boxDTO){
         return boxService.createBox(boxDTO);
     }
 
+    /**
+     * Retrieves all the existing boxes in the database.
+     * @return a list of the boxes found in the database
+     */
     @GetMapping
     public List<ResponseBoxDTO> getAllBox(){
         return boxService.getAllBox();
     }
 
+    /**
+     * Retrieves the box of the given parameter ID
+     * @param id the id of the box
+     * @return A ResponseBoxDTO containing the specific box with its details
+     */
     @GetMapping("/{id}")
     public ResponseBoxDTO getBoxById(@PathVariable int id){
         return boxService.getBoxById(id);
     }
+
+    /**
+     * Update a specific box selected by its ID
+     * @param id the id parameter of the box to update
+     * @param boxDTO the new box containing the updated box information.
+     * @return a ResponseBoxDTO containing the box updated with the new information
+     */
 
     @PutMapping("/{id}")
     public ResponseBoxDTO updateBox(@PathVariable int id, @RequestBody BoxDTO boxDTO){
         return boxService.updateBox(id, boxDTO);
     }
 
+    /**
+     * Delete a box corresponding to the given ID
+     * @param id the id parameter of the box to delete
+     */
     @DeleteMapping("/{id}")
     public void deleteBoxById(@PathVariable int id){
             boxService.deleteBoxById(id);
