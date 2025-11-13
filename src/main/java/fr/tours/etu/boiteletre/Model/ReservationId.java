@@ -7,14 +7,25 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Objects;
-
+/**
+ *  A  special class to create the composed Id of the reservation class
+ *
+ * @author Coulibaly Mamadou & Radia MERABTENE
+ * @version 1.0
+ */
 @Data
 @Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReservationId implements Serializable {
 
+    /**
+     * boxId : int the id of the reserved box
+     */
     private int boxId;
+    /**
+     * UserId  : int the id of the user doing the reservation
+     */
     private int userId;
 
 }

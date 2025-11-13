@@ -1,7 +1,7 @@
 package fr.tours.etu.boiteletre.Service;
 
 
-import fr.tours.etu.boiteletre.Configuration.ApiException;
+import fr.tours.etu.boiteletre.Exception.ApiException;
 import fr.tours.etu.boiteletre.DTO.DtoForUser.ResponseUserDTO;
 import fr.tours.etu.boiteletre.DTO.DtoForUser.UserDTO;
 import fr.tours.etu.boiteletre.MappStruct.UserMapper;
@@ -14,13 +14,28 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *  A service class for the user entity
+ * @author Coulibaly Mamadou & Radia MERABTENE
+ * @version 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class UserService {
-
+    /**
+     * a userRepository
+     */
    private final UserRepository userRepository;
+    /**
+     * a userMapper
+     */
    private final UserMapper userMapper;
 
+    /**
+     * create a new user
+     * @param userDTO
+     * @return ResponseUserDTO ( hide the password)
+     */
     public ResponseUserDTO createUser(UserDTO userDTO) {
 
         User user = userMapper.dtoToUser(userDTO);
@@ -30,6 +45,10 @@ public class UserService {
         return new ResponseUserDTO(userMapper.userToDto(saveUser));
     }
 
+    /**
+     * read the list of the users found in the database
+     * @return a list of users (ResponseUserDTO)
+     */
     public List<ResponseUserDTO> getAllUser() {
 
         List<User> userList = userRepository.findAll();
@@ -44,6 +63,11 @@ public class UserService {
         return responseUserDTOList;
     }
 
+    /**
+     * read a user corresponding  the given id
+     * @param id int the id of the user to read
+     * @return ResponseUserDTO ( hiding the password)
+     */
     public ResponseUserDTO getUserById(int id) {
 
         User user = userRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("User with the id : " + id + " doesn't exist!"));
@@ -51,6 +75,12 @@ public class UserService {
         return new ResponseUserDTO(userMapper.userToDto(user));
     }
 
+    /**
+     * update a user corresponding to the given id
+     * @param id int the id of the user to update
+     * @param userDTO the user object containing the new information of the user
+     * @return ResponseUserDTO (hiding the password)
+     */
     public ResponseUserDTO UpdateUser(int id, UserDTO userDTO) {
         return userRepository.findById(id).map(user ->{
             user.setName(userDTO.getName());
@@ -66,6 +96,10 @@ public class UserService {
         }).orElseThrow(() -> new ApiException("User with the id : " + id + " not found. So cannot be updated!", HttpStatus.NOT_FOUND));
     }
 
+    /**
+     * delete the user corresponding the given id
+     * @param id int the id of the user to update
+     */
     public void deleteUser(int id) {
         User user = userRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("User with the id : " + id + " not found. So cannot be deleted!"));
         userRepository.delete(user);

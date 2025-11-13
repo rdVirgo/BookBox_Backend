@@ -1,8 +1,6 @@
 package fr.tours.etu.boiteletre.Controller;
 
 import fr.tours.etu.boiteletre.DTO.DtoForBox.BoxDTO;
-import fr.tours.etu.boiteletre.DTO.DtoForBox.ResponseBoxDTO;
-import fr.tours.etu.boiteletre.Model.Box;
 import fr.tours.etu.boiteletre.Service.BoxService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +30,7 @@ public class BoxController {
      * @return A ResponseBoxDTO containing details of the created box.
      */
     @PostMapping
-    public ResponseBoxDTO createBox(@RequestBody BoxDTO boxDTO){
+    public  BoxDTO createBox(@RequestBody BoxDTO boxDTO){
         return boxService.createBox(boxDTO);
     }
 
@@ -41,7 +39,7 @@ public class BoxController {
      * @return a list of the boxes found in the database
      */
     @GetMapping
-    public List<ResponseBoxDTO> getAllBox(){
+    public List<BoxDTO> getAllBox(){
         return boxService.getAllBox();
     }
 
@@ -51,7 +49,7 @@ public class BoxController {
      * @return A ResponseBoxDTO containing the specific box with its details
      */
     @GetMapping("/{id}")
-    public ResponseBoxDTO getBoxById(@PathVariable int id){
+    public BoxDTO getBoxById(@PathVariable int id){
         return boxService.getBoxById(id);
     }
 
@@ -63,7 +61,7 @@ public class BoxController {
      */
 
     @PutMapping("/{id}")
-    public ResponseBoxDTO updateBox(@PathVariable int id, @RequestBody BoxDTO boxDTO){
+    public BoxDTO updateBox(@PathVariable int id, @RequestBody BoxDTO boxDTO){
         return boxService.updateBox(id, boxDTO);
     }
 

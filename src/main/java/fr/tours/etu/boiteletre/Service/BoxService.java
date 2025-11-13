@@ -1,7 +1,6 @@
 package fr.tours.etu.boiteletre.Service;
 
 import fr.tours.etu.boiteletre.DTO.DtoForBox.BoxDTO;
-import fr.tours.etu.boiteletre.DTO.DtoForBox.ResponseBoxDTO;
 import fr.tours.etu.boiteletre.MappStruct.BoxMapper;
 import fr.tours.etu.boiteletre.Model.Box;
 import fr.tours.etu.boiteletre.Repository.BoxRepository;
@@ -10,53 +9,86 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ *  A service Class for the Box entity
+ *
+ * @author Coulibaly Mamadou & Radia MERABTENE
+ * @version 1.0
+ */
 @Service
 @RequiredArgsConstructor
 public class BoxService {
-
+    /**
+     * a boxRepository object
+     */
     private final BoxRepository boxRepository;
+    /**
+     * a Boxmapper Object
+     */
     private final BoxMapper boxMapper;
 
-    public ResponseBoxDTO createBox(BoxDTO boxDTO){
+    /**
+     * creating a new BoxDTO
+     * @param boxDTO
+     * @return the created boxDTO
+     */
+    public  BoxDTO createBox(BoxDTO boxDTO){
 
         Box box = boxMapper.dtoToBox(boxDTO);
         Box saveBox = boxRepository.save(box);
 
         BoxDTO dtoBox = boxMapper.boxToDto(saveBox);
 
-        return new ResponseBoxDTO(dtoBox);
+        return new  BoxDTO(dtoBox);
     }
 
-
-    public List<ResponseBoxDTO> getAllBox(){
+    /**
+     * read all the list of the Boxes from the database
+     * @return a BoxDTO list
+     */
+    public List<BoxDTO> getAllBox(){
         List<Box> boxList = boxRepository.findAll();
-        List<ResponseBoxDTO> responseBoxDTOList = new ArrayList<>();
+        List<BoxDTO> responseBoxDTOList = new ArrayList<>();
 
         if (!boxList.isEmpty()){
             for (Box b : boxList) {
-                responseBoxDTOList.add(new ResponseBoxDTO(boxMapper.boxToDto(b)));
+                responseBoxDTOList.add(new BoxDTO(boxMapper.boxToDto(b)));
             }
         }
         return responseBoxDTOList;
     }
 
-    public ResponseBoxDTO getBoxById(int id){
+    /**
+     * get a specific box that machs the id in the parameter
+     * @param id : int the id of the box to read
+     * @return a BoxDTO
+     */
+    public  BoxDTO getBoxById(int id){
         Box box = boxRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("The box with the id : " + id + " doesn't exist!"));
 
-        return new ResponseBoxDTO(boxMapper.boxToDto(box));
+        return new  BoxDTO(boxMapper.boxToDto(box));
     }
 
-    public ResponseBoxDTO updateBox(int id, BoxDTO boxDTO){
+    /**
+     * update a specific box according to the id in the parameter
+     * @param id : int the id of the box to update
+     * @param boxDTO : the box containing the new values
+     * @return BoxDTO
+     */
+    public BoxDTO updateBox(int id, BoxDTO boxDTO){
         Box box = boxRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("The box with the id : " + id + " doesn't exist!"));
 
         box.setName(boxDTO.getName());
         box.setQuantity(boxDTO.getQuantity());
         box.setDescription(boxDTO.getDescription());
 
-        return new ResponseBoxDTO(boxMapper.boxToDto(boxRepository.save(box)));
+        return new BoxDTO(boxMapper.boxToDto(boxRepository.save(box)));
     }
 
+    /**
+     * delete a box of the given id in the parameter
+     * @param id int : the id of the box to delete
+     */
     public void deleteBoxById(int id){
 
         if (boxRepository.existsById(id)){

@@ -4,7 +4,7 @@
  * @author Coulibaly Mamadou & Radia MERABTENE
  * @version 1.0
  */
-package fr.tours.etu.boiteletre.Configuration;
+package fr.tours.etu.boiteletre.Exception;
 // imports
 import lombok.AllArgsConstructor;
 import lombok.Data;

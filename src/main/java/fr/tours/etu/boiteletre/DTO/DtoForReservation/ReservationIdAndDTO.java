@@ -5,10 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ *  A DTO for the ReservationId class.
+ * @author Coulibaly Mamadou & Radia MERABTENE
+ * @version 1.0
+        */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReservationIdAndDTO {
+    /**
+     *
+     */
     private ReservationId reservationId;
     private ReservationDTO reservationDTO;
 }
