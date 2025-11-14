@@ -3,7 +3,6 @@ package fr.tours.etu.boiteletre.Controller;
 
 import fr.tours.etu.boiteletre.DTO.DtoForReservation.ReservationDTO;
 import fr.tours.etu.boiteletre.DTO.DtoForReservation.ReservationIdAndDTO;
-import fr.tours.etu.boiteletre.Model.Reservation;
 import fr.tours.etu.boiteletre.Model.ReservationId;
 import fr.tours.etu.boiteletre.Service.ReservationService;
 import lombok.RequiredArgsConstructor;

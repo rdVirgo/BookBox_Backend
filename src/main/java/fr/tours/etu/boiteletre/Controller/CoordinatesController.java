@@ -1,7 +1,6 @@
 package fr.tours.etu.boiteletre.Controller;
 // import
 import fr.tours.etu.boiteletre.DTO.DtoForCoordinates.CoordinatesDTO;
-import fr.tours.etu.boiteletre.Model.Coordinates;
 import fr.tours.etu.boiteletre.Service.CoordinatesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

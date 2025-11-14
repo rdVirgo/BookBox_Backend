@@ -2,7 +2,6 @@ package fr.tours.etu.boiteletre.Controller;
 
 import fr.tours.etu.boiteletre.DTO.DtoForUser.ResponseUserDTO;
 import fr.tours.etu.boiteletre.DTO.DtoForUser.UserDTO;
-import fr.tours.etu.boiteletre.Model.User;
 import fr.tours.etu.boiteletre.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

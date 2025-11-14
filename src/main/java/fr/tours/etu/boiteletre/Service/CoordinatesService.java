@@ -6,7 +6,6 @@ import fr.tours.etu.boiteletre.MappStruct.CoordinatesMapper;
 import fr.tours.etu.boiteletre.Model.Coordinates;
 import fr.tours.etu.boiteletre.Repository.CoordinatesRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
