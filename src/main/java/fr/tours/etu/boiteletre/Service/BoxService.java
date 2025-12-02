@@ -1,10 +1,12 @@
 package fr.tours.etu.boiteletre.Service;
 
 import fr.tours.etu.boiteletre.DTO.DtoForBox.BoxDTO;
+import fr.tours.etu.boiteletre.Exception.ApiException;
 import fr.tours.etu.boiteletre.MappStruct.BoxMapper;
 import fr.tours.etu.boiteletre.Model.Box;
 import fr.tours.etu.boiteletre.Repository.BoxRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -64,7 +66,7 @@ public class BoxService {
      * @return a BoxDTO
      */
     public  BoxDTO getBoxById(int id){
-        Box box = boxRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("The box with the id : " + id + " doesn't exist!"));
+        Box box = boxRepository.findById(id).orElseThrow(()-> new ApiException("The box with the id : " + id + " doesn't exist!",HttpStatus.NOT_FOUND));
 
         return new  BoxDTO(boxMapper.boxToDto(box));
     }
@@ -76,7 +78,7 @@ public class BoxService {
      * @return BoxDTO
      */
     public BoxDTO updateBox(int id, BoxDTO boxDTO){
-        Box box = boxRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("The box with the id : " + id + " doesn't exist!"));
+        Box box = boxRepository.findById(id).orElseThrow(()-> new ApiException("The box with the id : " + id + " doesn't exist!",HttpStatus.NOT_FOUND));
 
         box.setName(boxDTO.getName());
         box.setQuantity(boxDTO.getQuantity());
@@ -94,7 +96,7 @@ public class BoxService {
         if (boxRepository.existsById(id)){
             boxRepository.deleteById(id);
         }else{
-            throw new IllegalArgumentException("The box with the id : " + id + " doesn't exist!");
+            throw new ApiException("The box with the id : " + id + " doesn't exist!", HttpStatus.NOT_FOUND);
         }
 
     }

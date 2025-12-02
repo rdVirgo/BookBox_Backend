@@ -1,5 +1,6 @@
 package fr.tours.etu.boiteletre.Model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,10 +23,12 @@ public class ReservationId implements Serializable {
     /**
      * boxId : int the id of the reserved box
      */
+    @Column(name = "box_id")
     private int boxId;
     /**
      * UserId  : int the id of the user doing the reservation
      */
+    @Column(name = "user_id")
     private int userId;
 
 }

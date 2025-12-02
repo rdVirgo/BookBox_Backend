@@ -1,6 +1,9 @@
 package fr.tours.etu.boiteletre.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 /**
@@ -20,16 +23,20 @@ public class Box {
      */
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @NotNull
     private int boxId;
     /**
      * name : string the name of the box
      */
     @Column(nullable = false)
+    @NotBlank
     private String name;
     /**
      * quantity : int number of books in the box
      */
     @Column(nullable = false)
+    @NotNull
+    @Min(value = 0)
     private int quantity;
 
     /**
@@ -41,7 +48,8 @@ public class Box {
      * the coordinates of the box
      */
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="coordinatesId")
+    @JoinColumn(name="coordinates_id", referencedColumnName = "coordinatesId", unique = true)
+    @NotNull
     private Coordinates coordinates;
 
 

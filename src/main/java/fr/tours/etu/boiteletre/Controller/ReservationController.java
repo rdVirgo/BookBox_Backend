@@ -3,6 +3,7 @@ package fr.tours.etu.boiteletre.Controller;
 
 import fr.tours.etu.boiteletre.DTO.DtoForReservation.ReservationDTO;
 import fr.tours.etu.boiteletre.DTO.DtoForReservation.ReservationIdAndDTO;
+import fr.tours.etu.boiteletre.Model.Reservation;
 import fr.tours.etu.boiteletre.Model.ReservationId;
 import fr.tours.etu.boiteletre.Service.ReservationService;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +34,7 @@ public class ReservationController {
      * @return A ReservationDTO containing details of the created reservation.
      */
     @PostMapping
-    public ReservationDTO createReservation(@RequestBody ReservationDTO reservationDTO) {
+    public Reservation createReservation(@RequestBody ReservationDTO reservationDTO) {
         return reservationService.createReservation(reservationDTO);
     }
 
@@ -42,7 +43,7 @@ public class ReservationController {
      * @return a list of the reservation  found in the database
      */
     @GetMapping
-    public List<ReservationDTO> getAllReservation() {
+    public List<Reservation> getAllReservation() {
         return reservationService.getAllReservations();
     }
 
@@ -52,7 +53,7 @@ public class ReservationController {
      * @return A ReservationDTO containing the specific reservation with its details
      */
     @GetMapping("/id")
-    public ReservationDTO getReservationById(@RequestBody ReservationId id) {
+    public Reservation getReservationById(@RequestBody ReservationId id) {
             return reservationService.getReservationById(id);
     }
 
@@ -62,7 +63,7 @@ public class ReservationController {
      * @return a CoordinatesDTO containing the coordinate updated with the new information
      */
     @PutMapping("/id")
-    public ReservationDTO updateReservation(@RequestBody ReservationIdAndDTO reservationIdAndDTO) {
+    public Reservation updateReservation(@RequestBody ReservationIdAndDTO reservationIdAndDTO) {
             return reservationService.updateReservation(reservationIdAndDTO);
     }
 

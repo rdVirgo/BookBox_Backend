@@ -2,6 +2,7 @@ package fr.tours.etu.boiteletre.Controller;
 
 import fr.tours.etu.boiteletre.DTO.DtoForBox.BoxDTO;
 import fr.tours.etu.boiteletre.Service.BoxService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * @version 1.0
  */
 @RestController
+@CrossOrigin("*")
 @RequiredArgsConstructor
 @RequestMapping("/api/box")
 public class BoxController {
@@ -30,7 +32,7 @@ public class BoxController {
      * @return A ResponseBoxDTO containing details of the created box.
      */
     @PostMapping
-    public  BoxDTO createBox(@RequestBody BoxDTO boxDTO){
+    public  BoxDTO createBox(@Valid @RequestBody BoxDTO boxDTO){
         return boxService.createBox(boxDTO);
     }
 
@@ -61,7 +63,7 @@ public class BoxController {
      */
 
     @PutMapping("/{id}")
-    public BoxDTO updateBox(@PathVariable int id, @RequestBody BoxDTO boxDTO){
+    public BoxDTO updateBox(@PathVariable int id, @Valid @RequestBody BoxDTO boxDTO){
         return boxService.updateBox(id, boxDTO);
     }
 

@@ -2,11 +2,17 @@ package fr.tours.etu.boiteletre.Service;
 
 import fr.tours.etu.boiteletre.DTO.DtoForReservation.ReservationDTO;
 import fr.tours.etu.boiteletre.DTO.DtoForReservation.ReservationIdAndDTO;
+import fr.tours.etu.boiteletre.Exception.ApiException;
 import fr.tours.etu.boiteletre.MappStruct.ReservationMapper;
+import fr.tours.etu.boiteletre.Model.Box;
 import fr.tours.etu.boiteletre.Model.Reservation;
 import fr.tours.etu.boiteletre.Model.ReservationId;
+import fr.tours.etu.boiteletre.Model.User;
+import fr.tours.etu.boiteletre.Repository.BoxRepository;
 import fr.tours.etu.boiteletre.Repository.ReservationRepository;
+import fr.tours.etu.boiteletre.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,6 +29,11 @@ public class ReservationService {
      * reservationRepository
      */
     private final ReservationRepository reservationRepository;
+
+    private final BoxRepository boxRepository;
+
+    private final UserRepository userRepository;
+
     /**
      * reservationMapper
      */
@@ -33,27 +44,31 @@ public class ReservationService {
      * @param reservationDTO
      * @return ReservationDTO
      */
-    public ReservationDTO createReservation(ReservationDTO reservationDTO) {
+    public Reservation createReservation(ReservationDTO reservationDTO) {
 
         Reservation reservation = reservationMapper.dtoToReservation(reservationDTO);
 
-        return reservationMapper.reservationToDto(reservationRepository.save(reservation));
+        Box box = boxRepository.findById(reservation.getReservationId().getBoxId())
+                .orElseThrow(()->new ApiException("The box with the id : " +
+                        reservation.getReservationId().getBoxId() + " not found !", HttpStatus.NOT_FOUND));
+
+        User user = userRepository.findById(reservation.getReservationId().getUserId())
+                .orElseThrow(()-> new ApiException("The user with the id : " +
+                        reservation.getReservationId().getUserId() + " not found!",HttpStatus.NOT_FOUND));
+
+        reservation.setBox(box);
+        reservation.setUser(user);
+
+        return reservationRepository.save(reservation);
+
     }
 
     /**
      * read all the list of the reservations from the database
      * @return a list of reservationDTO
      */
-    public List<ReservationDTO> getAllReservations() {
-        List<Reservation> reservationsList = reservationRepository.findAll();
-        List<ReservationDTO> reservationDTOList = new ArrayList<>();
-
-        if (!reservationsList.isEmpty()){
-            for (Reservation r : reservationsList){
-                reservationDTOList.add(reservationMapper.reservationToDto(r));
-            }
-        }
-        return reservationDTOList;
+    public List<Reservation> getAllReservations() {
+        return reservationRepository.findAll();
     }
 
     /**
@@ -61,11 +76,10 @@ public class ReservationService {
      * @param reservationId : int the id of the reservation to read
      * @return ReservationDTO
      */
-    public ReservationDTO getReservationById(ReservationId reservationId) {
+    public Reservation getReservationById(ReservationId reservationId) {
 
-        Reservation reservation = reservationRepository.findById(reservationId).orElseThrow(()-> new IllegalArgumentException("Reservation id : " + reservationId + " not found!"));
-
-        return reservationMapper.reservationToDto(reservation);
+        return reservationRepository.findById(reservationId).orElseThrow(
+                ()-> new IllegalArgumentException("Reservation id : " + reservationId + " not found!"));
     }
 
     /**
@@ -73,21 +87,33 @@ public class ReservationService {
      * @param reservationIdAndDTO the object containing the new information of the reservation
      * @return reservationDTO with information updated
      */
-    public ReservationDTO updateReservation(ReservationIdAndDTO reservationIdAndDTO){
+    public Reservation updateReservation(ReservationIdAndDTO reservationIdAndDTO){
 
         Reservation reservation = reservationRepository.findById(reservationIdAndDTO.getReservationId()).orElseThrow(()-> new IllegalArgumentException("Reservation id : " + reservationIdAndDTO.getReservationDTO() + " not found. So cannot be updated!"));
 
-        reservationRepository.delete(reservation);
+        Box box = boxRepository.findById(reservationIdAndDTO.getReservationDTO().getReservationId().getBoxId())
+                .orElseThrow(()->new ApiException("The box with the id : " +
+                        reservationIdAndDTO.getReservationDTO().getReservationId().getBoxId() + " not found !", HttpStatus.NOT_FOUND));
 
-        Reservation saveReservation = reservationMapper.dtoToReservation(reservationIdAndDTO.getReservationDTO());
+        User user = userRepository.findById(reservationIdAndDTO.getReservationDTO().getReservationId().getUserId())
+                .orElseThrow(()-> new ApiException("The user with the id : " +
+                        reservationIdAndDTO.getReservationDTO().getReservationId().getUserId() + " not found!",HttpStatus.NOT_FOUND));
 
-        return reservationMapper.reservationToDto(reservationRepository.save(saveReservation));
+        reservationRepository.deleteById(reservationIdAndDTO.getReservationId());
+
+        reservation.setBox(box);
+        reservation.setUser(user);
+        reservation.setReservationNb(reservationIdAndDTO.getReservationDTO().getReservationNb());
+        reservation.setReservationId(reservationIdAndDTO.getReservationDTO().getReservationId());
+
+        return reservationRepository.save(reservation);
+
 
     }
 
     /**
      * delete the reservation corresponding to the given ReservationId
-     * @param reservationId
+     * @param reservationId : ReservationId
      */
     public void deleteReservation(ReservationId reservationId) {
         if (!reservationRepository.existsById(reservationId)){
