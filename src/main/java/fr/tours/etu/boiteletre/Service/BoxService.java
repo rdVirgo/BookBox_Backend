@@ -4,6 +4,8 @@ import fr.tours.etu.boiteletre.DTO.DtoForBox.BoxDTO;
 import fr.tours.etu.boiteletre.Exception.ApiException;
 import fr.tours.etu.boiteletre.MappStruct.BoxMapper;
 import fr.tours.etu.boiteletre.Model.Box;
+import fr.tours.etu.boiteletre.Model.Reservation;
+import fr.tours.etu.boiteletre.Model.ReservationId;
 import fr.tours.etu.boiteletre.Repository.BoxRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  *  A service Class for the Box entity
  *
@@ -24,10 +27,15 @@ public class BoxService {
      * a boxRepository object
      */
     private final BoxRepository boxRepository;
+
+    private final ReservationService reservationService;
+
     /**
      * a Boxmapper Object
      */
     private final BoxMapper boxMapper;
+
+
 
     /**
      * creating a new BoxDTO
@@ -93,11 +101,20 @@ public class BoxService {
      */
     public void deleteBoxById(int id){
 
-        if (boxRepository.existsById(id)){
-            boxRepository.deleteById(id);
-        }else{
-            throw new ApiException("The box with the id : " + id + " doesn't exist!", HttpStatus.NOT_FOUND);
+        Box box = this.boxRepository.findById(id).orElseThrow(
+                ()-> new ApiException("The box with the id : " + id + " doesn't exist!", HttpStatus.NOT_FOUND)
+        );
+
+        List<Reservation> reservationList = this.reservationService.getAllReservations();
+
+        for (Reservation reservation : reservationList){
+            if (reservation.getBox().getBoxId() == box.getBoxId()){
+                ReservationId reservationId = new ReservationId(reservation.getBox().getBoxId(), reservation.getUser().getUserId());
+                this.reservationService.deleteReservation(reservationId);
+            }
         }
+
+        boxRepository.deleteById(id);
 
     }
 

@@ -5,6 +5,8 @@ import fr.tours.etu.boiteletre.Exception.ApiException;
 import fr.tours.etu.boiteletre.DTO.DtoForUser.ResponseUserDTO;
 import fr.tours.etu.boiteletre.DTO.DtoForUser.UserDTO;
 import fr.tours.etu.boiteletre.MappStruct.UserMapper;
+import fr.tours.etu.boiteletre.Model.Reservation;
+import fr.tours.etu.boiteletre.Model.ReservationId;
 import fr.tours.etu.boiteletre.Model.User;
 import fr.tours.etu.boiteletre.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +28,9 @@ public class UserService {
      * a userRepository
      */
    private final UserRepository userRepository;
+
+   private final ReservationService reservationService;
+
     /**
      * a userMapper
      */
@@ -102,6 +107,16 @@ public class UserService {
      */
     public void deleteUser(int id) {
         User user = userRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("User with the id : " + id + " not found. So cannot be deleted!"));
+
+        List<Reservation> reservationList = this.reservationService.getAllReservations();
+
+        for (Reservation reservation : reservationList){
+            if (reservation.getBox().getBoxId() == user.getUserId()){
+                ReservationId reservationId = new ReservationId(reservation.getBox().getBoxId(), reservation.getUser().getUserId());
+                this.reservationService.deleteReservation(reservationId);
+            }
+        }
+
         userRepository.delete(user);
     }
 
