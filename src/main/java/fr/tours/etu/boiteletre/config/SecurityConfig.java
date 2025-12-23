@@ -61,7 +61,8 @@ public class SecurityConfig {
                         // login and sig in
                         .requestMatchers("/api/auth/**").permitAll() // authentication public
                         // the API users accessible for admin only
-                        .requestMatchers(HttpMethod.GET, "/api/users/**").hasAnyRole("ADMIN")
+                        //.requestMatchers(HttpMethod.GET, "/api/users/**").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/users/**").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/users/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/users/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST,"api/users").permitAll()  // sig in for everyone

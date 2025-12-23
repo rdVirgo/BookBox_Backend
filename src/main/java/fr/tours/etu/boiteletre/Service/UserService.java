@@ -42,7 +42,11 @@ public class UserService {
         String hashedPassword = passwordEncoder.encode(userDTO.getPassword());
         userDTO.setPassword(hashedPassword);
         User user = userMapper.dtoToUser(userDTO);
-        user.setRole(Role.ROLE_USER);
+        if (userDTO.getRole() != null) {
+            user.setRole(userDTO.getRole());
+        } else {
+            user.setRole(Role.ROLE_USER);
+        }
         User saveUser = userRepository.save(user);
 
         return new ResponseUserDTO(userMapper.userToDto(saveUser));

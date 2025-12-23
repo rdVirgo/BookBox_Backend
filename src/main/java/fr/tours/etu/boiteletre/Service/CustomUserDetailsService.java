@@ -1,12 +1,5 @@
 package fr.tours.etu.boiteletre.Service;
 
-/**
- * @ClassName CustomUserDetailsService
- * @Description TODO
- * @Author MERABTENE
- * @Date 20/12/2025 14:54
- * @Version 1.0
- */
 
 import fr.tours.etu.boiteletre.Model.User;
 import fr.tours.etu.boiteletre.Repository.UserRepository;
@@ -18,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 /**
  * @ClassName UserDetailsService
