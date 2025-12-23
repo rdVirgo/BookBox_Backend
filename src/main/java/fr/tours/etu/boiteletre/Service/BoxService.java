@@ -1,8 +1,10 @@
 package fr.tours.etu.boiteletre.Service;
 
 import fr.tours.etu.boiteletre.DTO.DtoForBox.BoxDTO;
+import fr.tours.etu.boiteletre.DTO.DtoForCoordinates.CoordinatesDTO;
 import fr.tours.etu.boiteletre.Exception.ApiException;
 import fr.tours.etu.boiteletre.MappStruct.BoxMapper;
+import fr.tours.etu.boiteletre.MappStruct.CoordinatesMapper;
 import fr.tours.etu.boiteletre.Model.Box;
 import fr.tours.etu.boiteletre.Model.Reservation;
 import fr.tours.etu.boiteletre.Model.ReservationId;
@@ -28,7 +30,14 @@ public class BoxService {
      */
     private final BoxRepository boxRepository;
 
+    /**
+     * Reservation service to manage action related to reservation.
+     */
     private final ReservationService reservationService;
+
+    private final CoordinatesService coordinatesService;
+
+    private final CoordinatesMapper coordinatesMapper;
 
     /**
      * a Boxmapper Object
@@ -88,9 +97,21 @@ public class BoxService {
     public BoxDTO updateBox(int id, BoxDTO boxDTO){
         Box box = boxRepository.findById(id).orElseThrow(()-> new ApiException("The box with the id : " + id + " doesn't exist!",HttpStatus.NOT_FOUND));
 
+        CoordinatesDTO coordinatesDTO = new CoordinatesDTO(box.getCoordinates().getCoordinatesId(),
+                boxDTO.getCoordinates().getLatitude(), boxDTO.getCoordinates().getLongitude());
+
+        CoordinatesDTO updateCoordinates = coordinatesService.updateCoordinates(box.getCoordinates().getCoordinatesId(),coordinatesDTO);
+
+        System.out.println("Coordinates : " + updateCoordinates.getCoordinatesId() +
+                " - " + updateCoordinates.getLatitude() + " - " + updateCoordinates.getLongitude());
+
         box.setName(boxDTO.getName());
         box.setQuantity(boxDTO.getQuantity());
         box.setDescription(boxDTO.getDescription());
+
+
+
+        box.setCoordinates(this.coordinatesMapper.dtoToCoordinates(updateCoordinates));
 
         return new BoxDTO(boxMapper.boxToDto(boxRepository.save(box)));
     }

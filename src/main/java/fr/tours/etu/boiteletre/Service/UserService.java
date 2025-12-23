@@ -29,6 +29,9 @@ public class UserService {
      */
    private final UserRepository userRepository;
 
+    /**
+     * Reservation service to manage action related to reservation.
+     */
    private final ReservationService reservationService;
 
     /**
