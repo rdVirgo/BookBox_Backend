@@ -3,15 +3,15 @@
     import fr.tours.etu.boiteletre.DTO.DtoForAuth.AuthDTO;
     import fr.tours.etu.boiteletre.DTO.DtoForAuth.AuthResponseDTO;
     import fr.tours.etu.boiteletre.Service.AuthService;
-    import fr.tours.etu.boiteletre.Service.UserService;
     import lombok.RequiredArgsConstructor;
     import org.springframework.http.ResponseEntity;
     import org.springframework.web.bind.annotation.*;
 
     /**
      * @ClassName AuthController
-     * @Description TODO
-     * @Author MERABTENE
+     * @Description a controller containing the methods to authenticate a user (only an existing user
+     * car login to the app different from user controller)
+     * @Author Radia MERABTENE & Mamadou COULIBALY
      * @Date 09/12/2025 01:13
      * @Version 1.0
      */
@@ -19,17 +19,16 @@
     @RequestMapping("api/auth")
     @RequiredArgsConstructor
     public class AuthController {
-        private final UserService userService;
         private final AuthService authService;
 
         @PostMapping("/login")
-        public ResponseEntity<?> login(@RequestBody AuthDTO userDTO){
+        /**
+         * a method to authenticate a user for the login form
+         * @RequestBody the user data to authenticate
+         */
+        public ResponseEntity<AuthResponseDTO> login(@RequestBody AuthDTO userDTO){
 
                 AuthResponseDTO user=authService.authenticate(userDTO.getUsername(), userDTO.getPassword());
-                if (user==null){
-                    return ResponseEntity.status(401).body("Invalid username or password !");
-                }
-
                 return ResponseEntity.ok(user);
         }
 
