@@ -56,4 +56,8 @@ public class User {
     @Column(nullable = false)
     @NotBlank
     private String username;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
 }

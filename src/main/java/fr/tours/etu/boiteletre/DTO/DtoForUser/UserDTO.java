@@ -1,4 +1,5 @@
 package fr.tours.etu.boiteletre.DTO.DtoForUser;
+import fr.tours.etu.boiteletre.Model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,5 +39,6 @@ public class UserDTO {
      */
     private String username;
 
+    private Role role;
 
 }

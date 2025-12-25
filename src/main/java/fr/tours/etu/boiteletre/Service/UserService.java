@@ -11,8 +11,9 @@ import fr.tours.etu.boiteletre.Model.User;
 import fr.tours.etu.boiteletre.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import fr.tours.etu.boiteletre.Model.Role;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,16 +39,22 @@ public class UserService {
      * a userMapper
      */
    private final UserMapper userMapper;
+   private final PasswordEncoder passwordEncoder;
 
     /**
-     * create a new user
+     * create a new user by default the role is set to user
      * @param userDTO
      * @return ResponseUserDTO ( hide the password)
      */
     public ResponseUserDTO createUser(UserDTO userDTO) {
-
+        String hashedPassword = passwordEncoder.encode(userDTO.getPassword());
+        userDTO.setPassword(hashedPassword);
         User user = userMapper.dtoToUser(userDTO);
-
+        if (userDTO.getRole() != null) {
+            user.setRole(userDTO.getRole());
+        } else {
+            user.setRole(Role.ROLE_USER);
+        }
         User saveUser = userRepository.save(user);
 
         return new ResponseUserDTO(userMapper.userToDto(saveUser));
@@ -96,6 +103,10 @@ public class UserService {
             user.setEmail(userDTO.getEmail());
             user.setPassword(userDTO.getPassword());
             user.setUsername(userDTO.getUsername());
+
+            if (userDTO.getPassword() != null && !userDTO.getPassword().isBlank()) {
+                user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+            }
 
             User saveUser = userRepository.save(user);
 
