@@ -31,12 +31,18 @@ public class BoxService {
     private final BoxRepository boxRepository;
 
     /**
-     * Reservation service to manage action related to reservation.
+     * Reservation service to manage action related to reservation entity.
      */
     private final ReservationService reservationService;
 
+    /**
+     * Coordinates service to manage action related to coordinate entity.
+     */
     private final CoordinatesService coordinatesService;
 
+    /**
+     * Coordinates mapper.
+     */
     private final CoordinatesMapper coordinatesMapper;
 
     /**
@@ -102,14 +108,9 @@ public class BoxService {
 
         CoordinatesDTO updateCoordinates = coordinatesService.updateCoordinates(box.getCoordinates().getCoordinatesId(),coordinatesDTO);
 
-        System.out.println("Coordinates : " + updateCoordinates.getCoordinatesId() +
-                " - " + updateCoordinates.getLatitude() + " - " + updateCoordinates.getLongitude());
-
         box.setName(boxDTO.getName());
         box.setQuantity(boxDTO.getQuantity());
         box.setDescription(boxDTO.getDescription());
-
-
 
         box.setCoordinates(this.coordinatesMapper.dtoToCoordinates(updateCoordinates));
 

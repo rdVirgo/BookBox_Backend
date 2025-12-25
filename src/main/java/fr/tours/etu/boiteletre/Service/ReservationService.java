@@ -29,8 +29,14 @@ public class ReservationService {
      */
     private final ReservationRepository reservationRepository;
 
+    /**
+     * Box repository to manage action about box entity.
+     */
     private final BoxRepository boxRepository;
 
+    /**
+     * User repository to manage action about user entity.
+     */
     private final UserRepository userRepository;
 
     /**
@@ -40,7 +46,7 @@ public class ReservationService {
 
     /**
      * create a reservation
-     * @param reservationDTO
+     * @param reservationDTO : ReservationDTO
      * @return ReservationDTO
      */
     public Reservation createReservation(ReservationDTO reservationDTO) {
