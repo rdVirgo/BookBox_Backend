@@ -93,13 +93,11 @@ public class UserService {
             user.setName(userDTO.getName());
             user.setSurname(userDTO.getSurname());
             user.setEmail(userDTO.getEmail());
-            user.setPassword(userDTO.getPassword());
             user.setUsername(userDTO.getUsername());
 
             if (userDTO.getPassword() != null && !userDTO.getPassword().isBlank()) {
                 user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
             }
-
             User saveUser = userRepository.save(user);
 
             return new ResponseUserDTO(userMapper.userToDto(saveUser));
