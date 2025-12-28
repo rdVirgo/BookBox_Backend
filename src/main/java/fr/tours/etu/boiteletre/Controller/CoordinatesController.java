@@ -11,7 +11,7 @@ import java.util.List;
  *  A controller class for the Coordinates entity.
  * It contains  the crud operations for the user side.
  *
- * @author Coulibaly Mamadou & Radia MERABTENE
+ * @author Mamadou COULIBALY & Radia MERABTENE
  * @version 1.0
  */
 @RestController
