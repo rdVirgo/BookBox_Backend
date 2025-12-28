@@ -59,18 +59,22 @@ public class SecurityConfig {
                 // Access permission
                 .authorizeHttpRequests(auth -> auth
                         // login and sig in
-                        .requestMatchers("/api/auth/**").permitAll() // authentication public
+                        .requestMatchers("/api/auth/**").permitAll()// authentication public
+                        .requestMatchers(HttpMethod.GET, "api/coordinates/**").permitAll()
                         // the API users accessible for admin only
                         //.requestMatchers(HttpMethod.GET, "/api/users/**").hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/users/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/users/**").hasAnyRole("ADMIN","USER")
                         .requestMatchers(HttpMethod.PUT, "/api/users/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/users/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST,"api/users").permitAll()  // sig in for everyone
-                        .requestMatchers("/api/coordinates").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/box/**", "/api/reservation/**").permitAll() // only reading
 
                          // for a user logging in only -> creating and deleting updating reservations and boxes
-                        .requestMatchers("/api/box/**", "/api/reservation/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.POST ,"/api/box/**", "/api/reservation/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT ,"/api/box/**", "/api/reservation/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE ,"/api/box/**", "/api/reservation/**").hasAnyRole("USER", "ADMIN")
+
+
 
 
                         // the rest need authentication
