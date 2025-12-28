@@ -15,7 +15,7 @@ import java.util.Optional;
 /**
  * @ClassName AuthService
  * @Description a service to handle the authentication
- * @Author MERABTENE
+ * @Author Mamadou COULIBALY & Radia MERABTENE
  * @Date 09/12/2025 21:40
  * @Version 1.0
  */

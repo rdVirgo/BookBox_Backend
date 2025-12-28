@@ -9,7 +9,7 @@ import java.util.Optional;
 /**
  *  A repository Interface for the User
  *  contains essential functions for the CRUD
- * @author Coulibaly Mamadou & Radia MERABTENE
+ * @author Mamadou COULIBALY & Radia MERABTENE
  * @version 1.0
  */
 public interface UserRepository extends JpaRepository<User, Integer> {

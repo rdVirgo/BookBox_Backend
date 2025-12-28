@@ -1,7 +1,7 @@
 /**
  * A class used to create objects representing API errors.
  * It contains an error message and an associated HTTP status code.
- * @author Coulibaly Mamadou & Radia MERABTENE
+ * @author Mamadou COULIBALY & Radia MERABTENE
  * @version 1.0
  */
 package fr.tours.etu.boiteletre.Exception;

@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * @ClassName UserDetailsService
  * @Description TODO
- * @Author MERABTENE
+ * @Author Mamadou COULIBALY & Radia MERABTENE
  * @Date 20/12/2025 14:47
  * @Version 1.0
  */

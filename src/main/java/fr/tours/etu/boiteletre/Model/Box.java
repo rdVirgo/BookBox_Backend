@@ -9,7 +9,7 @@ import lombok.*;
 /**
  *  A  model class for the box
  *
- * @author Coulibaly Mamadou & Radia MERABTENE
+ * @author Mamadou COULIBALY & Radia MERABTENE
  * @version 1.0
  */
 @Entity

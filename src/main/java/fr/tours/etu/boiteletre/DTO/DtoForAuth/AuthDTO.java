@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 /**
  * @ClassName AuthDTO
  * @Description TODO
- * @Author MERABTENE
+ * @Author Mamadou COULIBALY & Radia MERABTENE
  * @Date 09/12/2025 21:36
  * @Version 1.0
  */

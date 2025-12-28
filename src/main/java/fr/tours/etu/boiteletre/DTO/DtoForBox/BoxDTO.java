@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 /**
  *  A DTO class for the box entity
  *
- * @author Coulibaly Mamadou & Radia MERABTENE
+ * @author Mamadou COULIBALY & Radia MERABTENE
  * @version 1.0
  */
 

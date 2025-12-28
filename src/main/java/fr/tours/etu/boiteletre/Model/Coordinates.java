@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 /**
  *  A coordinates model class
  *
- * @author Coulibaly Mamadou & Radia MERABTENE
+ * @author Mamadou COULIBALY & Radia MERABTENE
  * @version 1.0
  */
 @Entity
