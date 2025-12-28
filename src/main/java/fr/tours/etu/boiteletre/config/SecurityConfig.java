@@ -70,11 +70,12 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET,"/api/box/**", "/api/reservation/**").permitAll() // only reading
 
                          // for a user logging in only -> creating and deleting updating reservations and boxes
-                        .requestMatchers(HttpMethod.POST ,"/api/box/**", "/api/reservation/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.PUT ,"/api/box/**", "/api/reservation/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.DELETE ,"/api/box/**", "/api/reservation/**").hasAnyRole("USER", "ADMIN")
-
-
+                        .requestMatchers(HttpMethod.POST, "/api/reservation/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT , "/api/reservation/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE , "/api/reservation/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/api/box/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT,"/api/box/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE,"/api/box/**").hasRole("ADMIN")
 
 
                         // the rest need authentication
