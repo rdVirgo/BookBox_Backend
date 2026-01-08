@@ -145,7 +145,7 @@ mémoriser le mot de passe , car il sera chiffré !!
 NB : le frontend n’est pas nécessaire pour tester les API vous pouvez utiliser Postman.
 
 - 1- aller dans le dépot github et cloner le projet en utilisant l'url HTTPS du dépot en faisant : 
- git clone HTPPS:///
+ git clone https://github.com/rdVirgo/BookBox_Backend.git
 
 - 2- Importer le projet dans un IDE
 
