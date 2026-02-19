@@ -7,7 +7,8 @@ import org.mapstruct.Mapper;
  *  A mapper interface for the coordinates objects
  * Turn a normal coordinates object into a coordinatesDTO
  * Turn a DTO coordinates object into a normal object
- * @author Mamadou COULIBALY & Radia MERABTENE
+ * @author Mamadou COULIBALY & Rdvirgo
+ 
  * @version 1.0
  */
 @Mapper(componentModel = "spring")
