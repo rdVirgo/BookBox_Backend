@@ -22,7 +22,7 @@ import java.util.List;
  * @Description JWT Filter that analyzise the JWT Token
  * Extracts the JWT token from the Authorization header.
  * Validates the token using JwtService
- * @Author Radia MERABTENE & Mamadou COULIBALY
+ * @Author Rdvirgo & Mamadou COULIBALY
  * @Date 20/12/2025 14:55
  * @Version 1.0
  */
