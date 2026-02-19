@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 /**
  *  A  user model class
  *
- * @author Mamadou COULIBALY & Radia MERABTENE
+ * @author Mamadou COULIBALY & Rdvirgo
+ 
  * @version 1.0
  */
 @Entity
