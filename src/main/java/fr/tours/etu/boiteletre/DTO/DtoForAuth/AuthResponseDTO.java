@@ -8,7 +8,7 @@ import fr.tours.etu.boiteletre.Model.Role;
  * @ClassName AuthResponseDTO
  * @Description  the DTO of the user for authentication it contains the token generated
  * the username and the role of the user
- * @Author Radia MERABTENE et Mamadou COULIBALY
+ * @Author Rdvirgo et Mamadou COULIBALY
  * @Date 09/12/2025 22:29
  * @Version 1.0
  */
