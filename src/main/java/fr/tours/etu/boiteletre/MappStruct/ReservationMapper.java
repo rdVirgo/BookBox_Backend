@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
  *  A  mapper for the reservation entity
  * to convert a reservation to a Reservation DTO
  * convert a reservationDTO to a Reservation
- * @author Mamadou COULIBALY & Radia MERABTENE
+ * @author Mamadou COULIBALY & Rdvirgo
  * @version 1.0
  */
 @Mapper(componentModel = "spring")
