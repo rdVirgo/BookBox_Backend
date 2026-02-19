@@ -11,7 +11,7 @@
      * @ClassName AuthController
      * @Description a controller containing the methods to authenticate a user (only an existing user
      * car login to the app different from user controller)
-     * @Author Radia MERABTENE & Mamadou COULIBALY
+     * @Author Rdvirgo & Mamadou COULIBALY
      * @Date 09/12/2025 01:13
      * @Version 1.0
      */
