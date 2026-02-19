@@ -12,7 +12,8 @@ import java.util.List;
  *  A controller class for the User entity.
  * It contains  the crud operations for the user side.
  *
- * @author Mamadou COULIBALY & Radia MERABTENE
+ * @author Mamadou COULIBALY &  rdvirgo
+ 
  * @version 1.0
  */
 
