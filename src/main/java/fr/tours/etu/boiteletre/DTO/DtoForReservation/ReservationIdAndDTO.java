@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 /**
  *  A DTO for the ReservationId class.
- * @author Mamadou COULIBALY & Radia MERABTENE
+ * @author Mamadou COULIBALY & Rdvirgo
  * @version 1.0
         */
 @Data
