@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * A DTO class for the Coordinates entity for the transmission part
  *
- * @author Mamadou COULIBALY & Radia MERABTENE
+ * @author Mamadou COULIBALY & Rdvirgo
  * @version 1.0
         */
 @Data
