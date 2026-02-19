@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 /**
  *  A  service Class for the Reservation Class
- * @author Mamadou COULIBALY & Radia MERABTENE
+ * @author Mamadou COULIBALY & rdvirgo
  * @version 1.0
  */
 @Service
