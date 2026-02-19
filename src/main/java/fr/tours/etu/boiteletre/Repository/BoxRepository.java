@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 /**
  *  A repository Interface for the Box
  *  contains essential functions for the CRUD
- * @author Mamadou COULIBALY & Radia MERABTENE
+ * @author Mamadou COULIBALY & Rdvirgo
  * @version 1.0
  */
 @Repository
