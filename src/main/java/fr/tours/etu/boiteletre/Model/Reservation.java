@@ -9,7 +9,7 @@ import  lombok.Data;
 import lombok.NoArgsConstructor;
 /**
  *  A reservation model class
- * @author Mamadou COULIBALY & Radia MERABTENE
+ * @author Mamadou COULIBALY & rdvirgo
  * @version 1.0
  */
 
