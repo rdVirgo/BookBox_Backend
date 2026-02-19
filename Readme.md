@@ -29,7 +29,7 @@ L'application est multi-utilisateurs :
 
 ## Réalisé par 
 - Mamadou Coulibaly  
-- Radia Merabtene
+- rdVirgo
 
 
 ## Schéma de la base des données : 
