@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * @ClassName JwtService
  *  * @Description a service to handle the JWT  Tokens
- *  * @Author Radia MERABTENE & Mamadou COULIBALY
+ *  * @Author rdvirgo & Mamadou COULIBALY
  *  * @Date 09/12/2025 21:40
  *  * @Version 1.0
  */
