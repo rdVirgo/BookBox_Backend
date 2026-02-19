@@ -1,7 +1,8 @@
 /**
  * A controllerAdvice class to "catch" all errors that the user may encounter.
  *
- * @author Mamadou COULIBALY & Radia MERABTENE
+ * @author Mamadou COULIBALY & Rdvirgo
+ 
  * @version 1.0
  */
 package fr.tours.etu.boiteletre.Exception;
