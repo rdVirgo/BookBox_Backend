@@ -19,7 +19,7 @@ import java.util.List;
  * Security configuration file.
  * Defines access rules according to user roles (USER / ADMIN).
  * 20/12/2025
- * @author Radia MERABTENE & Mamadou COULIBALY
+ * @author Rdvirgo & Mamadou COULIBALY
  * @version 1.0
  */
 
