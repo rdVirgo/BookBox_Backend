@@ -19,7 +19,7 @@ import java.util.List;
 /**
  *  A service Class for the Box entity
  *
- * @author Mamadou COULIBALY & Radia MERABTENE
+ * @author Mamadou COULIBALY & rdvirgo
  * @version 1.0
  */
 @Service
