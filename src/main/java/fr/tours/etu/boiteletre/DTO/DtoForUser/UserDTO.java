@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 /**
  *  A dto class for the User entity .
  *
- * @author Mamadou COULIBALY & Radia MERABTENE
+ * @author Mamadou COULIBALY & rdvirgo
  * @version 1.0
         */
 @Data
