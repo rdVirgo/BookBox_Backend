@@ -11,7 +11,8 @@ import java.util.Objects;
 /**
  *  A  special class to create the composed Id of the reservation class
  *
- * @author Mamadou COULIBALY & Radia MERABTENE
+ * @author Mamadou COULIBALY &  rdvirgo
+ 
  * @version 1.0
  */
 @Data
