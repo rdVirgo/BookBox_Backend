@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
  *  A mapper for the user entity
  * convert a user to userDTO
  * covert a userDTO to a user
- * @author Mamadou COULIBALY & Radia MERABTENE
+ * @author Mamadou COULIBALY & rdvirgo
  * @version 1.0
  */
 @Mapper(componentModel = "spring")
