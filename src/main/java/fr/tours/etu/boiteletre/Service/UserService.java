@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  *  A service class for the user entity
- * @author Mamadou COULIBALY & Radia MERABTENE
+ * @author Mamadou COULIBALY & Rdvirgo
  * @version 1.0
  */
 @Service
