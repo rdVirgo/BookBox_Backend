@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
  *  A mapper interface for the Box entity
  *  to transform a dto object to a normal entity
  *  and to transform a normal object to a dto
- * @author Mamadou COULIBALY & Radia MERABTENE
+ * @author Mamadou COULIBALY & Rdvirgo
  * @version 1.0
  */
 @Mapper(componentModel = "spring")
