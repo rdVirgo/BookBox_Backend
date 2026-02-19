@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 /**
  *  A DTO for the User entity ( response part hiding the password)
  *
- * @author Mamadou COULIBALY & Radia MERABTENE
+ * @author Mamadou COULIBALY & rdvirgo
+ 
  * @version 1.0
  */
 @Data
