@@ -13,7 +13,8 @@ import java.util.List;
 /**
  *  A  service class for the coordinates entity
  *
- * @author Mamadou COULIBALY & Radia MERABTENE
+ * @author Mamadou COULIBALY & rdvirgo
+ 
  * @version 1.0
  */
 @Service
